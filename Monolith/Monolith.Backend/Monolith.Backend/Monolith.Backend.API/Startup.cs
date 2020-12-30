@@ -1,12 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
-using Microsoft.AspNetCore.Mvc.Versioning;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Options;
 using Monolith.Backend.API.Swagger;
+using Monolith.Backend.Core.Repositories;
+using Monolith.Backend.Core.Services;
+using Monolith.Backend.Infrastructure.Repositories;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace Monolith.Backend.API
@@ -17,12 +18,7 @@ namespace Monolith.Backend.API
         {
             services.AddControllers();
 
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-
-            services.AddApiVersioning(options =>
-            {
-                options.ReportApiVersions = true;
-            });
+            services.AddApiVersioning(options => { options.ReportApiVersions = true; });
 
             services.AddVersionedApiExplorer(options =>
             {
@@ -30,7 +26,11 @@ namespace Monolith.Backend.API
                 options.SubstituteApiVersionInUrl = true;
             });
 
+            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
             services.AddAppSwaggerGen();
+
+            services.AddTransient<ITasksService, TasksService>();
+            services.AddSingleton<ITasksRepository, FakeTasksRepository>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)

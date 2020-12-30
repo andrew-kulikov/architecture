@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+using Monolith.Backend.Core.Services;
 
 namespace Monolith.Backend.API.Controllers
 {
@@ -7,11 +9,20 @@ namespace Monolith.Backend.API.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
+        private readonly ITasksService _tasksService;
+
+        public TasksController(ITasksService tasksService)
+        {
+            _tasksService = tasksService;
+        }
+
         [HttpGet]
         [Route("")]
-        public IActionResult GetTasks()
+        public async Task<IActionResult> GetTasks()
         {
-            return Ok();
+            var tasks = await _tasksService.GetAllTasksAsync();
+
+            return new OkObjectResult(tasks);
         }
     }
 }

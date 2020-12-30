@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monolith.Backend.API", "Mon
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monolith.Backend.Core", "Monolith.Backend.Core\Monolith.Backend.Core.csproj", "{DC5504AE-1CE0-447B-A3B1-C2ECF77E72BD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Monolith.Backend.Infrastructure", "Monolith.Backend.Infrastructure\Monolith.Backend.Infrastructure.csproj", "{CCCCB925-1D42-4E17-9B68-D8258204F48F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{DC5504AE-1CE0-447B-A3B1-C2ECF77E72BD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DC5504AE-1CE0-447B-A3B1-C2ECF77E72BD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DC5504AE-1CE0-447B-A3B1-C2ECF77E72BD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CCCCB925-1D42-4E17-9B68-D8258204F48F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CCCCB925-1D42-4E17-9B68-D8258204F48F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CCCCB925-1D42-4E17-9B68-D8258204F48F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CCCCB925-1D42-4E17-9B68-D8258204F48F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

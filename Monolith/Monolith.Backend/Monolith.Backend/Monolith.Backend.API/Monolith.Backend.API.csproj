@@ -24,4 +24,9 @@
     <PackageReference Include="Swashbuckle.AspNetCore" Version="5.6.3" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Monolith.Backend.Core\Monolith.Backend.Core.csproj" />
+    <ProjectReference Include="..\Monolith.Backend.Infrastructure\Monolith.Backend.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
