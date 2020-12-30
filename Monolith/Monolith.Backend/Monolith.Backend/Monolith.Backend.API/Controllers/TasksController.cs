@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Monolith.Backend.Core.Requests;
 using Monolith.Backend.Core.Services;
 
 namespace Monolith.Backend.API.Controllers
@@ -16,6 +17,7 @@ namespace Monolith.Backend.API.Controllers
             _tasksService = tasksService;
         }
 
+        //GET api/v1/tasks
         [HttpGet]
         [Route("")]
         public async Task<IActionResult> GetTasks()
@@ -23,6 +25,16 @@ namespace Monolith.Backend.API.Controllers
             var tasks = await _tasksService.GetAllTasksAsync();
 
             return new OkObjectResult(tasks);
+        }
+
+        //POST api/v1/tasks
+        [HttpPost]
+        [Route("")]
+        public async Task<IActionResult> CreateTask([FromBody] CreateTaskRequest request)
+        {
+            var task = await _tasksService.CreateTaskAsync(request);
+
+            return new OkObjectResult(task);
         }
     }
 }
