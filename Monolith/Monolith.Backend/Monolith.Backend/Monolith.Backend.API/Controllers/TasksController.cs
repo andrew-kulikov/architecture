@@ -49,5 +49,15 @@ namespace Monolith.Backend.API.Controllers
 
             return new OkObjectResult(task);
         }
+
+        //POST api/v1/tasks
+        [HttpDelete]
+        [Route("{id}")]
+        public async Task<IActionResult> DeleteTask([FromRoute] Guid id)
+        {
+            await _tasksService.RemoveTaskAsync(id);
+
+            return NoContent();
+        }
     }
 }
