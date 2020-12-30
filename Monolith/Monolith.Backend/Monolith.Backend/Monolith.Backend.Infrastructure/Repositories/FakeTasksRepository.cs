@@ -31,6 +31,15 @@ namespace Monolith.Backend.Infrastructure.Repositories
                 _tasks.Single(t => t.Id == id));
         }
 
+        public System.Threading.Tasks.Task<Task> CreateTaskAsync(Task task)
+        {
+            if (_tasks.Any(t => t.Id == task.Id)) throw new ArgumentException($"Task with id {task.Id} already exists");
+
+            _tasks.Add(task);
+
+            return System.Threading.Tasks.Task.FromResult(task);
+        }
+
         public System.Threading.Tasks.Task RemoveTaskAsync(Guid id)
         {
             var taskToRemove = _tasks.FirstOrDefault(t => t.Id == id);

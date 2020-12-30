@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using Monolith.Backend.Core.Models;
 using Monolith.Backend.Core.Repositories;
+using Monolith.Backend.Core.Requests;
 
 namespace Monolith.Backend.Core.Services
 {
@@ -22,6 +23,13 @@ namespace Monolith.Backend.Core.Services
         public async System.Threading.Tasks.Task<Task> GetTaskByIdAsync(Guid id)
         {
             return await _repository.GetTaskByIdAsync(id);
+        }
+
+        public async System.Threading.Tasks.Task<Task> CreateTaskAsync(CreateTaskRequest request)
+        {
+            var task = new Task(Guid.NewGuid(), request.Title, request.Description);
+
+            return await _repository.CreateTaskAsync(task);
         }
 
         public async System.Threading.Tasks.Task RemoveTaskAsync(Guid id)

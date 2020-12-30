@@ -8,6 +8,7 @@ namespace Monolith.Backend.Core.Repositories
     {
         System.Threading.Tasks.Task<ICollection<Task>> GetAllTasksAsync();
         System.Threading.Tasks.Task<Task> GetTaskByIdAsync(Guid id);
+        System.Threading.Tasks.Task<Task> CreateTaskAsync(Task task);
         System.Threading.Tasks.Task RemoveTaskAsync(Guid id);
     }
 }
