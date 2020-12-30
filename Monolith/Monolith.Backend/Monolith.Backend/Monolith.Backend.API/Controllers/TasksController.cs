@@ -2,7 +2,9 @@
 
 namespace Monolith.Backend.API.Controllers
 {
-    [Route("api/tasks")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/tasks")]
+    [ApiController]
     public class TasksController : ControllerBase
     {
         [HttpGet]
