@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Monolith.Backend.Core.Requests;
 using Monolith.Backend.Core.Services;
@@ -25,6 +26,18 @@ namespace Monolith.Backend.API.Controllers
             var tasks = await _tasksService.GetAllTasksAsync();
 
             return new OkObjectResult(tasks);
+        }
+
+
+        //GET api/v1/tasks/ec652bad-db2e-4389-9a4c-b0cc09600534
+        [HttpGet]
+        [Route("{id}")]
+        public async Task<IActionResult> GetTask([FromRoute] Guid id)
+        {
+            // TODO: add optional return
+            var task = await _tasksService.GetTaskByIdAsync(id);
+
+            return new OkObjectResult(task);
         }
 
         //POST api/v1/tasks
