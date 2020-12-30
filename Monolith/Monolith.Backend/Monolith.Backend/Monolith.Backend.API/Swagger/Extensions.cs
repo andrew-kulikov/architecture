@@ -58,17 +58,6 @@ namespace Monolith.Backend.API.Swagger
                     }
                 });
 
-                c.TagActionsBy(apiDesc =>
-                {
-                    var attr = apiDesc
-                        .CustomAttributes()
-                        .OfType<DisplayNameAttribute>()
-                        .FirstOrDefault();
-
-                    var displayName = attr?.DisplayName ?? apiDesc.GroupName;
-                    return new List<string> {displayName};
-                });
-
                 var xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
 
