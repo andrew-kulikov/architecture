@@ -39,6 +39,13 @@ namespace Monolith.Backend.API
 
             app.UseRouting();
 
+            app.UseCors(options =>
+            {
+                options.AllowAnyHeader();
+                options.AllowAnyOrigin();
+                options.AllowAnyMethod();
+            });
+
             app.UseAppSwagger(provider);
 
             app.UseApiVersioning();
