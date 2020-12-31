@@ -1,14 +1,15 @@
 import React from 'react';
+
+import Tasks from './components/tasks';
+
 import './App.css';
 
-function App() {
+const App: React.FunctionComponent = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        Hello!
-      </header>
+    <div className="app">
+      <Tasks />
     </div>
   );
-}
+};
 
 export default App;
