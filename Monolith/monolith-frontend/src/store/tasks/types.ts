@@ -9,6 +9,11 @@ export interface ITask {
     description: string
 }
 
+export interface ICreateTaskRequest {
+    title: string,
+    description: string
+}
+
 export interface ITaskState {
     tasks: ITask[],
     loading: boolean
@@ -19,4 +24,11 @@ export type GetAllTasksAction = {
     payload: {}
 }
 
-export type TasksActions =  GetAllTasksAction | ActionType<typeof setAllTasks>;
+export type CreateTaskAction = {
+    type: Constants.CREATE_TASK,
+    payload: {
+        task: ITask
+    }
+}
+
+export type TasksActions =  GetAllTasksAction | CreateTaskAction | ActionType<typeof setAllTasks>;
