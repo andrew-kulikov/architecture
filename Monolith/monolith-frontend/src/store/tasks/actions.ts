@@ -19,11 +19,20 @@ export const getAllTasks = () => async (dispatch: Dispatch) => {
   }
 };
 
-export const createTask = (task: ICreateTaskRequest) => async (dispatch: Dispatch) => {
-  const response = await axios.post<ICreateTaskRequest, AxiosResponse<ITask>>(`${API_ARL}/api/v1/tasks`, task);
+export const createTask = (task: ICreateTaskRequest) => async (
+  dispatch: Dispatch
+) => {
+  const response = await axios.post<ICreateTaskRequest, AxiosResponse<ITask>>(
+    `${API_ARL}/api/v1/tasks`,
+    task
+  );
 
   if (response.status === 200) {
-    return dispatch(action(Constants.CREATE_TASK, response.data));
+    return dispatch(
+      action(Constants.CREATE_TASK, {
+        task: response.data,
+      })
+    );
   } else {
     //return dispatch(actions.signinFailed({ error: `Error ${res.status}: ${res.statusText}` }))
   }
