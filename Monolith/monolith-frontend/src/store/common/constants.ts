@@ -1,0 +1,1 @@
+export const API_ARL = process.env.REACT_APP_API_ARL;
