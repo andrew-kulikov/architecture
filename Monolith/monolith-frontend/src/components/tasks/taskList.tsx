@@ -1,14 +1,21 @@
 import React from 'react';
-import { ITask } from '../../store/tasks/types';
+import { ITask, DeleteTaskFunctionType } from '../../store/tasks/types';
 
 type TaskListProps = {
   tasks: ITask[];
+  deleteTask: DeleteTaskFunctionType;
 };
 
-const TaskList: React.FunctionComponent<TaskListProps> = ({ tasks }) => (
+const TaskList: React.FunctionComponent<TaskListProps> = ({
+  tasks,
+  deleteTask,
+}) => (
   <ul>
     {tasks.map((task) => (
-      <li key={task.id.toString()}>{task.title}</li>
+      <li key={task.id.toString()}>
+        {task.title}{' '}
+        <button onClick={(e) => deleteTask(task.id)}>Remove</button>
+      </li>
     ))}
   </ul>
 );

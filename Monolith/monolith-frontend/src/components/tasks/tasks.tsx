@@ -7,7 +7,8 @@ import { connect } from 'react-redux';
 
 import { IRootState } from '../../store';
 import { ITaskState, ICreateTaskRequest } from '../../store/tasks/types';
-import { getAllTasks, createTask } from '../../store/tasks/actions';
+import { getAllTasks, createTask, deleteTask } from '../../store/tasks/actions';
+import { Guid } from 'guid-typescript';
 
 const mapStateToProps = ({ taskState }: IRootState) => ({
   tasks: taskState.tasks,
@@ -24,6 +25,9 @@ const mapDispatchToProps = (
     const request: ICreateTaskRequest = { title, description: '' };
     dispatch(createTask(request));
   },
+  requestDeleteTask(id: Guid) {
+    dispatch(deleteTask(id));
+  },
 });
 
 type TasksProps = ReturnType<typeof mapStateToProps> &
@@ -34,6 +38,7 @@ const Tasks: React.FunctionComponent<TasksProps> = ({
   loading,
   requestAllTasks,
   createTask,
+  requestDeleteTask,
 }) => {
   const [title, setTtile] = useState<string>('');
 
@@ -55,7 +60,7 @@ const Tasks: React.FunctionComponent<TasksProps> = ({
         ></input>
         <button onClick={(e) => createTask(title)}>Submit task</button>
       </div>
-      <TaskList tasks={tasks} />
+      <TaskList tasks={tasks} deleteTask={requestDeleteTask} />
     </div>
   );
 };

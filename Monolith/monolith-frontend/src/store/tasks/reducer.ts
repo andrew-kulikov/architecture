@@ -15,6 +15,11 @@ export function tasksReducer(
       return { tasks: action.payload.tasks, loading: false };
     case Constants.CREATE_TASK:
       return { ...state, tasks: [...state.tasks, action.payload.task] };
+    case Constants.DELETE_TASK:
+      return {
+        ...state,
+        tasks: state.tasks.filter((task) => task.id !== action.payload.id),
+      };
     case Constants.GET_ALL_TASKS:
       return { ...state, loading: true };
     default:

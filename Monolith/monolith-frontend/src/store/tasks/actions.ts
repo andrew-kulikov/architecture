@@ -6,6 +6,7 @@ import axios, { AxiosResponse } from 'axios';
 import { Constants } from './constants';
 import { API_ARL } from '../common/constants';
 import { ICreateTaskRequest, ITask } from './types';
+import { Guid } from 'guid-typescript';
 
 export const getAllTasks = () => async (dispatch: Dispatch) => {
   dispatch(action(Constants.GET_ALL_TASKS, {}));
@@ -33,6 +34,17 @@ export const createTask = (task: ICreateTaskRequest) => async (
         task: response.data,
       })
     );
+  } else {
+    //return dispatch(actions.signinFailed({ error: `Error ${res.status}: ${res.statusText}` }))
+  }
+};
+
+export const deleteTask = (id: Guid) => async (dispatch: Dispatch) => {
+  const requestQrl = `${API_ARL}/api/v1/tasks/${id.toString()}`;
+  const response = await axios.delete(requestQrl);
+
+  if (response.status === 204) {
+    return dispatch(action(Constants.DELETE_TASK, { id }));
   } else {
     //return dispatch(actions.signinFailed({ error: `Error ${res.status}: ${res.statusText}` }))
   }

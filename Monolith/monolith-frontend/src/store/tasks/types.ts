@@ -31,4 +31,13 @@ export type CreateTaskAction = {
     }
 }
 
-export type TasksActions =  GetAllTasksAction | CreateTaskAction | ActionType<typeof setAllTasks>;
+export type DeleteTaskAction = {
+    type: Constants.DELETE_TASK,
+    payload: {
+        id: Guid
+    }
+}
+
+export type DeleteTaskFunctionType = (id: Guid) => void;
+
+export type TasksActions =  GetAllTasksAction | CreateTaskAction | DeleteTaskAction | ActionType<typeof setAllTasks>;

@@ -1,5 +1,6 @@
 export enum Constants {
     GET_ALL_TASKS = 'GET_ALL_TASKS',
     SET_ALL_TASKS = 'SET_ALL_TASKS',
-    CREATE_TASK = 'CREATE_TASK'
+    CREATE_TASK = 'CREATE_TASK',
+    DELETE_TASK = 'DELETE_TASK'
 }
